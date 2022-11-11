@@ -18,7 +18,7 @@ export const AuthProvider = ({children}) => {
 
     let loginUser = async (e )=> {
         e.preventDefault()
-        let response = await fetch('http://127.0.0.1:8000/api/token/', {
+        let response = await fetch('https://ictlabs.herokuapp.com/api/token/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -51,7 +51,7 @@ export const AuthProvider = ({children}) => {
 
     let updateToken = async ()=> {
 
-        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
+        let response = await fetch('https://ictlabs.herokuapp.com/api/token/refresh/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -97,7 +97,7 @@ export const AuthProvider = ({children}) => {
     // }
 
     let globalLesson = async () => {
-        let response = await fetch("NEXT_PUBLIC_BASE_URL/latest-lessons/", {
+        let response = await fetch("https://ictlabs.herokuapp.com/latest-lessons/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -106,13 +106,7 @@ export const AuthProvider = ({children}) => {
         });
         let data = await response.json();
     
-        console.log("Chris lessons from context", data);
-    
-        // if (response.status === 200) {
-        //   setLesson(data);
-        // } else if (response.statusText === "Unauthorized") {
-        //   logoutUser();
-        // }
+        
       };
 
     let contextData = {

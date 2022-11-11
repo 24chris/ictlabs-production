@@ -16,7 +16,7 @@ const Supervisor = () => {
   let supervise = async e=> {
     e.preventDefault()
     const stud = {name,address}
-    let response = await fetch('http://127.0.0.1:8000/api/v1/add-supervisor/', {
+    let response = await fetch('https://ictlabs.herokuapp.com/api/v1/add-supervisor/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',

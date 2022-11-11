@@ -19,7 +19,7 @@ const HomePage = () => {
 
 
   let getCategory = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/latest-mod/", {
+    let response = await fetch("https://ictlabs.herokuapp.com/api/v1/latest-mod/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const HomePage = () => {
     });
     let data = await response.json();
 
-    // console.log("Chris Categories", data);
+    
 
     if (response.status === 200) {
       setCategory(data);
@@ -36,12 +36,11 @@ const HomePage = () => {
       logoutUser();
     }
   };
-  // const {course_slug,module_slug,lesson_slug}=useParams()
-  // console.log("The course",course_slug)
+  
   
   
   let getLesson = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/latest-lessons/", {
+    let response = await fetch("https://ictlabs.herokuapp.com/api/v1/latest-lessons/", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -50,7 +49,7 @@ const HomePage = () => {
         });
         let data = await response.json();
 
-    console.log("Chris lessons from homepage", data[0].video_url);
+    
 
     if (response.status === 200) {
       setLesson(data);
