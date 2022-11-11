@@ -7,7 +7,7 @@ const PrivateRoute = ({children, ...rest}) => {
     return(
         // <Route  {...rest}>{!user ? <Navigate to="/login" /> :   children}</Route>
         
-       user.authtokens ?<Navigate to="/login"/> : <Outlet/>
+       user.authtokens ?<Navigate to={`${encodeURIComponent('/login')}`}/> : <Outlet/>
 
 
 
