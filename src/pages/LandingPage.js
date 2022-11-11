@@ -88,7 +88,7 @@ const LandingPage = () => {
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
-          height={320}
+          height={310}
           width={640}
         ></iframe>
       </div>
