@@ -42,7 +42,7 @@ const Register = () => {
        navigate('/user')
         
     }else{
-        notify()
+        alert('Something went wrong')
         
     }
 }
