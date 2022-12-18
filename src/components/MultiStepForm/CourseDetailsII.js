@@ -7,24 +7,7 @@ const CourseDetails = ({ formData, setFormData }) => {
         <h1 className="text-2xl font-bold mb-8 text-gray-600">
           University Details
         </h1>
-        <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
-          <div className="flex flex-col w-full my-2">
-            <label className="text-sm font-semibold text-gray-600 dark:text-white">
-              Year of Study
-            </label>
-            <input
-              type="text"
-              placeholder="year of study"
-              name="year_of_study"
-              required={true}
-              value={formData.year_of_study}
-              onChange={(e) =>
-                setFormData({ ...formData, year_of_study: e.target.value })
-              }
-              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:black"
-            />
-          </div>
-        </div>
+        
         <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
           <div className="flex flex-col w-full my-2">
             <label className="text-sm font-semibold text-gray-600 dark:text-white">
@@ -32,7 +15,7 @@ const CourseDetails = ({ formData, setFormData }) => {
             </label>
             <input
               type="text"
-              placeholder="registration number"
+              placeholder="Registration Number"
               value={formData.registration_number}
               name="registration_number"
               required={true}
@@ -43,11 +26,43 @@ const CourseDetails = ({ formData, setFormData }) => {
             />
           </div>
         </div> 
-        {/* <div className="fex flex-row w-full">
-          <button className="bg-red-500 to-grey-500 px-4 py-2 my-8 text-white rounded-md">
-            Next
-          </button>
-        </div> */}
+
+        <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
+          <div className="flex flex-col w-full my-2">
+            <label className="text-sm font-semibold text-gray-600 dark:text-white">
+              Area of residence
+            </label>
+            <input
+              type="text"
+              placeholder="Area of Residence"
+              value={formData.area_of_residence}
+              name="area_of_residence"
+              onChange={(e) =>
+                setFormData({ ...formData, area_of_residence: e.target.value })
+              }
+              required={true}
+              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:black"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
+          <div className="flex flex-col w-full my-2">
+            <label className="text-sm font-semibold text-gray-600 dark:text-white">
+              Guardian Name
+            </label>
+            <input
+              type="text"
+              placeholder="Guardian Name"
+              value={formData.guardian_name}
+              name="guardian_name"
+              onChange={(e) =>
+                setFormData({ ...formData, guardian_name: e.target.value })
+              }
+              required={true}
+              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:black"
+            />
+          </div>
+        </div>
       </div>
     </>
   );

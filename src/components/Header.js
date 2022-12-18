@@ -14,15 +14,16 @@ const Header = () => {
             <nav className='md:ml-auto flex flex-wrap items-center text-base justify-center'>
            
             {user ? (
-                <>  {user && <p> {user.username}</p>} <span> | </span>
+                <> {user && <p className='font-sans text-2xl font-semibold p-2'> {user.username}</p>} <span className='font-sans text-2xl p-2'> | </span>
 
-                <p  onClick={logoutUser}>Logout</p> 
+                <p  className='font-sans  inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-500"
+            '  onClick={logoutUser}>Logout</p> 
                 </>
             ): (
                 <>
-                <Link className='mr-5 hover:text-gray-900' to='/user' >Login</Link>
+                <Link className='mr-5 hover:text-gray-900' to="/user" >Login</Link>
 
-                <Link className='mr-5 hover:text-gray-900' to='/register'> Register</Link>
+                <Link className='mr-5 hover:text-gray-900' to="/register"> Register</Link>
                 </>
             )}
           

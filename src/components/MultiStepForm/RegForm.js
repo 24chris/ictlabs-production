@@ -1,32 +1,33 @@
-import React, { useState,useContext,useEffect } from "react";
+import React, { useState,useContext,useEffect, useRef } from "react";
 import AuthContext from "../../context/AuthContext";
 import Biodata from "./Biodata";
 import CourseDetails from "./CourseDetails";
 import UniversityDetails from "./UniversityDetails";
-import UniversityDetailsII from "./CourseDetailsII";
 import CourseDetailsII from "./CourseDetailsII";
 import BiodataII from "./BiodataII";
 import Pay from "./Pay";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import {useFlutterwave,closePaymentModal} from 'flutterwave-react-v3'
 
 const RegForm = () => {
-    let { authTokens, logoutUser } = useContext(AuthContext);
-
+  let { authTokens,user, logoutUser } = useContext(AuthContext);
+  
   const navigate = useNavigate();
+
+  console.log("This is the user detail to submit data with",user.user_id)
 
   const [page, setPage] = useState(0);
 
   const FormTitles = ["Biodata","BiodataII", "CourseDetails", "CourseDetailsII", "UniversityDetails", "Pay"];
 
   const [formData, setFormData] = useState({
+    user:user.user_id,
     university: "",
     title_of: "",
     college: "",
     department: "",
     telephone: "",
     coursefield: "",
-    // course: "",
     specify_course: "",
     department_choice: "",
     year_of_study: "",
@@ -35,12 +36,25 @@ const RegForm = () => {
     guardian_name: "",
     guardian_number: "",
     intern_picture: "",
-    student_id: "",
+    student_id_picture: "",
     work_type: "",
-    conv:"",
+    start_time:"",
+    end:"",
   });
 
   const [isShown, setIsShown] = useState(false);
+  const inputValue = useRef()
+
+  const mm_unber =inputValue.current = formData.telephone
+  const st_email =inputValue.current = user.email
+
+
+  console.log("Use ref stuff",inputValue.current = formData.telephone)
+
+  
+  let {course_slug} = useParams()
+  let {module_slug} = useParams()
+  let {lesson_slug} = useParams()
 
   
 //   useEffect(()=> {
@@ -49,15 +63,14 @@ const RegForm = () => {
 
 
 // const config = {
-//   // public_key: 'FLWPUBK-5ce732bb653d94cd9b750e6f69524d35-X',
-//   public_key:'FLWPUBK_TEST-0aef47dba99a60c07a74333e93bec52e-X',
+//   public_key:'FLWPUBK-6c66fbf331a89f824d6d5b164088a8a6-X',
 //   tx_ref: Date.now(),
 //   amount: 10000,
 //   currency: 'UGX',
 //   payment_options: 'card,mobilemoneyuganda',
 //   customer: {
-//     email: 'vivjochris@gmail.com',
-//     phonenumber: '',
+//     email: 'test@gmail.com',
+//     phonenumber: {mm_unber},
 //     name: 'Peter',
 //   },
 //   customizations: {
@@ -69,18 +82,21 @@ const RegForm = () => {
 
 // const handleFlutterPayment = useFlutterwave(config);
 
+  
 
 
   const PageDisplay = () => {
-    if (page == 0) {
+    if (page === 0) {
+      
       return <Biodata formData={formData} setFormData={setFormData} />;
-    } else if (page == 1) {
+      
+    } else if (page === 1) {
       return <BiodataII formData={formData} setFormData={setFormData} />;
-    } else if (page == 2) {
+    } else if (page === 2) {
       return <CourseDetails formData={formData} setFormData={setFormData} />;
-    } else if (page == 3) {
+    } else if (page === 3) {
       return <CourseDetailsII formData={formData} setFormData={setFormData} />;
-    } else if (page == 4) {
+    } else if (page === 4) {
       return (
         <UniversityDetails formData={formData} setFormData={setFormData} />
       );
@@ -88,24 +104,23 @@ const RegForm = () => {
       return <Pay formData={formData} setFormData={setFormData} />;
     }
   };
-  const submitData = async (e) => {
+  const submitData = async () => {
     // e.preventDefault()
-    const stud = {formData}
-    let response = await fetch('http://127.0.0.1:8000/api/v1/create-students/', {
+    const data = formData
+
+    
+    let response = await fetch('http://127.0.0.1:8000/api/v2/create-students/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
             'Authorization':'Bearer ' + String(authTokens.access)
         },
-        body:JSON.stringify(stud)
+        body:JSON.stringify(data)
     })
 
-    let box = await response.json()
-
-    console.log("Items collected",box)
-
+   
     if(response.status === 201){
-      alert('Thanks for your submission!!')
+      alert('Thanks for your submission!!')    
       // handleFlutterPayment({
       //   callback: (response) => {
       //      console.log(response);
@@ -113,29 +128,28 @@ const RegForm = () => {
       //   },
       //   onClose: () => {},
       // });
-      navigate('/dashboard')
+      // navigate(`/${course_slug}/${module_slug}/${lesson_slug}/`)
+      // navigate('/courses')
 
        
    }else{
        alert('Something went wrong!')
        
    }
-  // e.preventDefault()
-  // alert("We got here!")
 
 
   };
 
   return (
-    <div className="form-container bg-white   flex flex-col items-center max-w-xl mx-auto">
-      <div className="fex flex-row w-full">
+    <div className="form-container bg-white flex flex-col items-center max-w-xl mx-auto">
+      <div className="flex-row w-full">
         <div>{PageDisplay()}</div>
 
         <button
-          className="bg-red-500 w-1/2 to-grey-500 px-2 py-2 my-8 text-white rounded-md"
+          className="bg-red-500 w-[17.3rem] mr-2 to-grey-500  py-2 my-6 text-white rounded-md"
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
-          disabled={page== 0}
+          disabled={page=== 0}
           onClick={() => {
              setPage((currPage) => currPage - 1);
           }}
@@ -144,7 +158,7 @@ const RegForm = () => {
         </button>
 
         <button
-          className="bg-red-500 w-1/2 to-grey-500 px-2 py-2 my-8  text-white rounded-md"
+          className="bg-red-500  to-grey-500 w-[17.3rem] ml-2  py-2 my-6  text-white rounded-md"
           onMouseEnter={() => setIsShown(true)}
           onMouseLeave={() => setIsShown(false)}
           onClick={() => {
@@ -155,7 +169,7 @@ const RegForm = () => {
             } else setPage((currPage) => currPage + 1);
           }}
         >
-          {page == FormTitles.length - 1 ? "Submit" : "Next"}
+          {page === FormTitles.length - 1 ? "Submit" : "Next"}
         </button>
 
         {/* {isShown && (<div className=" bg-red-400 animate-bounce">Registration fee is 11,000/=</div>)} */}

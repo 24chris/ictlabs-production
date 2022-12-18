@@ -8,39 +8,19 @@ import InAppBottom from "../components/InAppBottom";
 const HomePage = () => {
   let [category, setCategory] = useState([]);
   let [lessons, setLesson] = useState([]);
+  let [video,setVideo] = useState()
   
-  let { authTokens, logoutUser,globalLesson } = useContext(AuthContext);
+  let { authTokens, logoutUser } = useContext(AuthContext);
 
   useEffect(() => {
-    getCategory();
+   
     getLesson();
-    // globalLesson();
-  }, []);
-
-
-  let getCategory = async () => {
-    let response = await fetch("https://ictlabs.herokuapp.com/api/v1/latest-mod/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authTokens.access),
-      },
-    });
-    let data = await response.json();
-
     
-
-    if (response.status === 200) {
-      setCategory(data);
-    } else if (response.statusText === "Unauthorized") {
-      logoutUser();
-    }
-  };
-  
+  }, []);
   
   
   let getLesson = async () => {
-    let response = await fetch("https://ictlabs.herokuapp.com/api/v1/latest-lessons/", {
+    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/latest-lessons/`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -49,7 +29,7 @@ const HomePage = () => {
         });
         let data = await response.json();
 
-    
+    // console.log("Chris lessons from homepage", data[0].video_url);
 
     if (response.status === 200) {
       setLesson(data);
@@ -57,7 +37,6 @@ const HomePage = () => {
       logoutUser();
     }
   };
-
 
 
   return (
@@ -93,7 +72,7 @@ const HomePage = () => {
                                 key={lesson.id}
                                 className="px-4 pt-4 pb-2 text-sm text-gray-500"
                               >
-                                <Link><a href={`${encodeURI(lesson.id)}`}>{lesson.name}</a></Link>
+                                <a href={`${encodeURI(lesson.get_absolute_url)}`}>{lesson.name}</a>
                                 {/* Return a list of the lessons in the module with link of the id of video to be played */}
                               </Disclosure.Panel>
 
@@ -119,8 +98,8 @@ const HomePage = () => {
         
         <div className="flex flex-initial items-center mt-2 mb-4 px-2 w-9/12">
         <iframe
-              // src="https://www.youtube.com/embed/tyn3ydrh9Rk"
-              src={lessons[0].video_url}
+              src="https://www.youtube.com/embed/tyn3ydrh9Rk"
+              // src={lessons[0].video_url}
               title="some video"
               allowfullscreen
               width={900}

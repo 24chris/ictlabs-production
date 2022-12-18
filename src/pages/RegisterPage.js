@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   let { authTokens, logoutUser } = useContext(AuthContext);
@@ -12,6 +14,8 @@ const Register = () => {
   const [username,setUsername] = useState('')
   const [password,setPassword] = useState('')
   const [role,setRole] = useState('')
+
+  const notify = () => toast("Wow so easy!");
   
   useEffect(()=> {
     register()
@@ -21,7 +25,7 @@ const Register = () => {
   let register = async e=> {
     e.preventDefault()
     const newuser = {email,username,password,role}
-    let response = await fetch('https://ictlabs.herokuapp.com/api/v1/register/', {
+    let response = await fetch('http://127.0.0.1:8000/api/register/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -38,7 +42,7 @@ const Register = () => {
        navigate('/user')
         
     }else{
-        alert('Something went wrong!')
+        notify()
         
     }
 }
@@ -46,15 +50,7 @@ const Register = () => {
   return (
     <div className="fex flex-row w-full">
       <form onSubmit={register}>
-        {/* <div className="flex flex-col w-full my-2">
-          <h3>Email</h3>
-          <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
-          <h3>Username</h3>
-          <input type="text" name="username" value={name} onChange={e => setUsername(e.target.value)}  />
-          <h3>Password</h3>
-          <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
-          <input type="submit" value="submit" />
-        </div> */}
+        
         <section className="flex flex-col mt-6">
           <div className="login-box w-full md:mx-auto relative z-100">
             {/* <h1 className="max-w-xl mx-auto pl-4 font-bold text-xl">Field Simplified</h1> */}
@@ -137,9 +133,9 @@ const Register = () => {
               <div className="max-w-xl mx-auto">
                 <p className="text-sm mt-8 ml-8">
                   Have an account already ?{" "}
-                  <a href="#" className="text-red-500">
+                  <Link to="/login" className="text-red-500">
                     Login
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

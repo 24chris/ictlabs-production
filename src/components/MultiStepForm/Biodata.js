@@ -14,7 +14,7 @@ const Biodata = ({ formData, setFormData }) => {
             </label>
             <input
               type="text"
-              placeholder="university"
+              placeholder="University"
               value={formData.university}
               name="university"
               required={true}
@@ -61,48 +61,7 @@ const Biodata = ({ formData, setFormData }) => {
             />
           </div>
         </div>
-        {/* <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
-          <div className="flex flex-col w-full my-2">
-            <label className="text-sm font-semibold text-gray-600 dark:text-white">
-              Department
-            </label>
-            <input
-              type="text"
-              placeholder="Department"
-              value={formData.sdepart}
-              name="sdepart"
-              required={true}
-              onChange={(e) =>
-                setFormData({ ...formData, sdepart: e.target.value })
-              }
-              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
-          <div className="flex flex-col w-full my-2">
-            <label className="text-sm font-semibold text-gray-600 dark:text-white">
-              Phone Number
-            </label>
-            <input
-              type="text"
-              placeholder="phone number"
-              value={formData.telno}
-              name="telno"
-              required={true}
-              onChange={(e) =>
-                setFormData({ ...formData, telno: e.target.value })
-              }
-              className="border-b py-2 bg-white focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50"
-            />
-          </div>
-        </div> */}
-
-        {/* <div className="fex flex-row w-full">
-          <button className="bg-red-500 to-grey-500 px-4 py-2 my-8 text-white rounded-md">
-            Next
-          </button>
-        </div> */}
+        
       </div>
     </>
   );

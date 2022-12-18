@@ -11,7 +11,12 @@ import SupervisorPage from "./pages/SupervisorPage";
 import LandingPage from "./pages/LandingPage";
 import RegisterPage from "./pages/RegisterPage";
 import BridgePage from "./pages/BridgePage";
+import CoursePage from "./pages/CoursePage"
 import TestPage from "./pages/TestPage"
+import DemoLanding from "./pages/DemoLandingPage"
+import LandWatch from "./components/LandWatch";
+import DashboardPage from "./pages/DashboardPage"
+import ModulePage from "./pages/ModulePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -25,13 +30,17 @@ function App() {
             <Route element={<LandingPage />} path="/login" exact />
             <Route element={<LoginPage />} path="/user" exact />
             <Route element={<RegisterPage />} path="/register" exact />
+            <Route element={<LandWatch/>} path="/demo-watch" exact/>
             <Route element={<PrivateRoute />}>
-              <Route element={<HomePage />} path="/dashboard" exact />
-              <Route element={<TestPage />} path="/test-lesson/:lesson_id" exact />
+              <Route element={<HomePage />} path="/home-page" exact />
+              <Route element={<TestPage />} path="/:course_slug/:module_slug/:lesson_slug" exact />
               <Route element={<PromptPage />} path="/prompt" exact />
               <Route element={<CompleteRegPage />} path="/complete" exact />
               <Route element={<SupervisorPage />} path="/supervisor" exact />
-              <Route element={<BridgePage />} path="/step1" exact />
+              <Route element={<BridgePage />} path="/user-registration" exact />
+              <Route element={<CoursePage />} path="/courses" exact />
+              <Route element={<DashboardPage />} path="/:course_slug/" exact />
+              <Route element={<ModulePage />} path="/:course_slug/:module_slug" exact />
             </Route>
           </Routes>
         </AuthProvider>

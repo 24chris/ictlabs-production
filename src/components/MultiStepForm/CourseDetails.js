@@ -7,24 +7,8 @@ const CourseDetails = ({ formData, setFormData }) => {
         <h1 className="text-2xl font-bold mb-8 text-gray-600">
           University Details
         </h1>
-        <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
-          <div className="flex flex-col w-full my-2">
-            <label className="text-sm font-semibold text-gray-600 dark:text-white">
-              Course Field
-            </label>
-            <input
-              type="text"
-              placeholder="choose program of interest"
-              value={formData.coursefield}
-              name="coursefield"
-              required={true}
-              onChange={(e) =>
-                setFormData({ ...formData, coursefield: e.target.value })
-              }
-              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:black"
-            />
-          </div>
-        </div>
+        
+       
         <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
           <div className="flex flex-col w-full my-2">
             <label className="text-sm font-semibold text-gray-600 dark:text-white">
@@ -32,7 +16,7 @@ const CourseDetails = ({ formData, setFormData }) => {
             </label>
             <input
               type="text"
-              placeholder="specify course"
+              placeholder="Specify Course"
               value={formData.specify_course}
               name="specify_course"
               required={true}
@@ -48,60 +32,44 @@ const CourseDetails = ({ formData, setFormData }) => {
             <label className="text-sm font-semibold text-gray-600 dark:text-white">
               Choose what department you want to do internship in
             </label>
-            <input
+            <select
               type="text"
-              placeholder="department"
+              placeholder="Department"
               name="department_choice"
               required={true}
-              value={formData.department_choice}
-              onChange={(e) =>
-                setFormData({ ...formData, department_choice: e.target.value })
-              }
               className="border-b py-2 bg-white focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:black"
-            />
-          </div>
-        </div>
-        {/* <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
-          <div className="flex flex-col w-full my-2">
-            <label className="text-sm font-semibold text-gray-600 dark:text-white">
-              Year of Study
-            </label>
-            <input
-              type="text"
-              placeholder="year of study"
-              name="yos"
-              required={true}
-              value={formData.yos}
-              onChange={(e) =>
-                setFormData({ ...formData, yos: e.target.value })
-              }
-              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50"
-            />
+            >
+            <option value={formData.department_choice} onChange={(e) => setFormData({...formData,department_choice:e.target.value})}>Choose what department you want to do internship in</option>
+                <option value="US">Humanities</option>
+                <option value="CA">Programming</option>
+                <option value="FR">Databases</option>
+                <option value="DE">Finance</option>
+            </select>
           </div>
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-between my-4 w-full">
           <div className="flex flex-col w-full my-2">
             <label className="text-sm font-semibold text-gray-600 dark:text-white">
-              Registration Number
+              Year of Study
             </label>
-            <input
+            <select
               type="text"
-              placeholder="registration number"
-              value={formData.regno}
-              name="regno"
+              placeholder="Year of Study"
+              name="year_of_study"
               required={true}
+              value={formData.year_of_study}
               onChange={(e) =>
-                setFormData({ ...formData, regno: e.target.value })
+                setFormData({ ...formData, year_of_study: e.target.value })
               }
-              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50"
-            />
+              className="border-b py-2 bg-white  focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:black"
+            >
+            <option selected>Year of Study</option>
+                <option value="1">I</option>
+                <option value="2">II</option>
+                <option value="3">III</option>
+            </select>
           </div>
-        </div> */}
-        {/* <div className="fex flex-row w-full">
-          <button className="bg-red-500 to-grey-500 px-4 py-2 my-8 text-white rounded-md">
-            Next
-          </button>
-        </div> */}
+        </div>
       </div>
     </>
   );

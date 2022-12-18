@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   let { loginUser } = useContext(AuthContext);
@@ -8,12 +9,11 @@ const LoginPage = () => {
       <form onSubmit={loginUser}>
         <section className="flex flex-col mt-6">
           <div className="login-box w-full md:mx-auto relative z-100">
-            {/* <h1 className="max-w-xl mx-auto pl-4 font-bold text-xl">Field Simplified</h1> */}
             <div className="box shadow-2xl max-w-xl mx-auto rounded-md p-14 z-100">
               <h2 className="text-2xl font-bold mb-8 text-gray-600">
                 User Login
               </h2>
-              {/* <input name="csrfToken" type="hidden" defaultValue={csrfToken} /> */}
+
               <div className="mb-8">
                 <p className="text-md text-gray-500 mb-2">Email</p>
                 <input
@@ -38,24 +38,16 @@ const LoginPage = () => {
 
               <input
                 className="w-full bg-red-500 py-2 rounded-md text-gray-50"
-                // onClick={() => signIn()}
                 type="submit"
                 value="Login"
               />
 
-              {/* </input> */}
-              {/* <button
-                className="w-full bg-red-500 py-2 rounded-md text-gray-50"
-                onClick={() => signIn("credentials")}
-              >
-                Login
-              </button> */}
               <div className="max-w-xl mx-auto">
                 <p className="text-sm mt-8 ml-8">
                   Dont have an account?{" "}
-                  <a href="#" className="text-red-500">
+                  <Link to="/register" className="text-red-500">
                     Register
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

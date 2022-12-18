@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from 'react'
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContext = createContext()
 
@@ -12,13 +14,15 @@ export const AuthProvider = ({children}) => {
     let [user, setUser] = useState(()=> localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     let [loading, setLoading] = useState(true)
 
+    
+
     let [lessons, setLesson] = useState([]);
 
     const navigate = useNavigate()
 
     let loginUser = async (e )=> {
         e.preventDefault()
-        let response = await fetch('https://ictlabs.herokuapp.com/api/token/', {
+        let response = await fetch('http://127.0.0.1:8000/api/token/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -33,10 +37,14 @@ export const AuthProvider = ({children}) => {
             setAuthTokens(data)
             setUser(jwt_decode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
-            navigate('/step1')
+
+            navigate('/user-registration')
             
         }else{
-            alert('Something went wrong!')
+            // alert('Something went wrong!')
+            toast.error("These credentials do not exist",{
+                position: toast.POSITION.TOP_LEFT
+              })
         }
     }
 
@@ -51,7 +59,7 @@ export const AuthProvider = ({children}) => {
 
     let updateToken = async ()=> {
 
-        let response = await fetch('https://ictlabs.herokuapp.com/api/token/refresh/', {
+        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -74,48 +82,14 @@ export const AuthProvider = ({children}) => {
         }
     }
 
-    // Submit student details
-    // let details = async (e )=> {
-    //     e.preventDefault()
-    //     let response = await fetch('http://127.0.0.1:8000/api/v1/create-students/', {
-    //         method:'POST',
-    //         headers:{
-    //             'Content-Type':'application/json'
-    //         },
-    //         body:JSON.stringify({'university':e.target.university.value, 'title':e.target.title.value})
-    //     })
-    //     let box = await response.json()
-
-    //     console.log("Items collected",box)
-
-    //     if(response.status === 200){
-    //        alert('Thanks for your submission!!')
-            
-    //     }else{
-    //         alert('Something went wrong!')
-    //     }
-    // }
-
-    let globalLesson = async () => {
-        let response = await fetch("https://ictlabs.herokuapp.com/latest-lessons/", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + String(authTokens.access),
-          },
-        });
-        let data = await response.json();
     
-        
-      };
 
     let contextData = {
         user:user,
         authTokens:authTokens,
         loginUser:loginUser,
         logoutUser:logoutUser,
-        // details:details,
-        globalLesson:globalLesson
+        
     }
 
 

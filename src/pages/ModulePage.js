@@ -4,28 +4,26 @@ import { Link, useParams } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import InAppBottom from "../components/InAppBottom";
-import WatchList from "../components/study/WatchList";
 
-const TestPage = () => {
-  let [category, setCategory] = useState([]);
-  let [lessons, setLesson] = useState([]);
-  let [video,setVideo] = useState([]);
+const ModulePage = () => {
+  let [module,setModule] = useState([]);
 
   let {course_slug} = useParams()
   let {module_slug} = useParams()
-  let {lesson_slug} = useParams()
+  
    
 
   let { authTokens, logoutUser } = useContext(AuthContext);
 
   useEffect(() => {
-    getCategory();
-    getLesson();
-    getVideo();
+    getModule();
   }, []);
 
-  let getCategory = async () => {
-    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/latest-mod/`, {
+  
+
+
+  let getModule = async () => {
+    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/${module_slug}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,45 +32,10 @@ const TestPage = () => {
     });
     let data = await response.json();
 
-    if (response.status === 200) {
-      setCategory(data);
-    } else if (response.statusText === "Unauthorized") {
-      logoutUser();
-    }
-  };
-
-  let getLesson = async () => {
-    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/latest-lessons/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authTokens.access),
-      },
-    });
-    let data = await response.json();
+    console.log("Modules available", data);
 
     if (response.status === 200) {
-      setLesson(data);
-    } else if (response.statusText === "Unauthorized") {
-      logoutUser();
-    }
-  };
-
-
-  let getVideo = async () => {
-    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/${module_slug}/${lesson_slug}/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authTokens.access),
-      },
-    });
-    let data = await response.json();
-
-    console.log("Dynamic Video loaded", data);
-
-    if (response.status === 200) {
-      setVideo(data);
+      setModule(data);
     } else if (response.statusText === "Unauthorized") {
       logoutUser();
     }
@@ -85,8 +48,8 @@ const TestPage = () => {
           <div>
             <h2 className="px-10 mt-2 mb-2">Lessons to Complete</h2>
 
-            <ul className="px-10">
-              {category.map((cat) => (
+            {/* <ul className="px-10">
+              {module.map((cat) => (
                 <>
                   <Disclosure>
                     {({ open }) => (
@@ -101,7 +64,7 @@ const TestPage = () => {
                           />
                         </Disclosure.Button>
 
-                        {lessons.map((lesson) => (
+                         {lessons.map((lesson) => (
                           <>
                             <Disclosure.Panel
                               key={lesson.id}
@@ -114,34 +77,32 @@ const TestPage = () => {
                               
                             </Disclosure.Panel>
                           </>
-                        ))}
+                        ))} 
                       </>
                     )}
                   </Disclosure>
                 </>
               ))}
-            </ul>
+            </ul> */}
             {/* </div> */}
           </div>
         </div>
 
         <div className="flex flex-initial items-center mt-2 mb-4 px-2 w-9/12">
           <iframe
-            // src="https://www.youtube.com/embed/tyn3ydrh9Rk"
-            src={video.video_url}
+            src="https://www.youtube.com/embed/tyn3ydrh9Rk"
+            // src={video.video_url}
             title="some video"
             allowfullscreen
             width={900}
             height={500}
           ></iframe>
         </div>
-        <div>{video.description}</div>
+        {/* <div>{video.description}</div> */}
       </div>
       <InAppBottom />
-
-    
     </>
   );
 };
 
-export default TestPage;
+export default ModulePage;

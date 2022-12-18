@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import ReactPlayer from "react-player/youtube";
-import Bottom from "../components/Botton";
+import Bottom from "../components/Bottom";
+import LandWatch from "../components/LandWatch";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -15,39 +16,13 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
-const videos = [
-  {
-    name: "Why Simplified",
-    url: "https://www.youtube.com/embed/tyn3ydrh9Rk",
-  },
-  {
-    name: "About Internship ",
-    url: "https://www.youtube.com/watch?v=TEDR6Jg2Pls",
-  },
-  {
-    name: "Other Programs ",
-    url: "https://www.youtube.com/embed/tyn3ydrh9Rk",
-  },
-  {
-    name: "About Supervision",
-    url: "https://www.youtube.com/embed/tyn3ydrh9Rk",
-  },
-  {
-    name: "Fields Covered",
-    url: "https://www.youtube.com/watch?v=TEDR6Jg2Pls",
-  },
-  {
-    name: "Need Help",
-    url: "https://www.youtube.com/embed/tyn3ydrh9Rk",
-  },
-  {
-    name: "Demos",
-    url: "https://www.youtube.com/watch?v=TEDR6Jg2Pls",
-  },
-];
 
 const LandingPage = () => {
   const [showBanner, setShowBanner] = useState(true);
+  const [content,setContent] = useState('')
+  
+  const [currentVideo, setCurrentVideo] = useState();
+
 
   // Persisting the localstorage
   // useEffect(() =>{
@@ -55,15 +30,49 @@ const LandingPage = () => {
   //   if(data !== null)setShowBanner(JSON.parse(data))
   // },[])
 
+  let text = async () => {
+    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/home-page/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+       
+      },
+    });
+    let courses = await response.json();
+
+    if (response.status === 200) {
+      setContent(courses);
+    } else {
+      alert("Something went wrong!");
+    }
+  };
+
+  const fetchVideos = async () =>{
+    let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/intro-videos/`,{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json",
+      },
+    })
+
+    let videoResult = await res.json()
+
+    if(res.status === 200){
+      setCurrentVideo(videoResult)
+    }else{
+      alert("Somethig went wrong!")
+    }
+  }
+
+
   useEffect(() => {
     window.localStorage.setItem("POP_UP", JSON.stringify(showBanner));
+    text()
+    fetchVideos()
   }, [showBanner]);
 
-  const [currentVideo, setCurrentVideo] = useState();
-  const [playing, setPlaying] = useState(false);
-
-  let { authTokens, logoutUser } = useContext(AuthContext);
-
+  
+  
   return (
     <>
       {showBanner && (
@@ -82,106 +91,11 @@ const LandingPage = () => {
           </div>
         </>
       )}
-      <div className="container mx-auto relative p-6 w-max">
-        <iframe
-          src="https://www.youtube.com/embed/r9jwGansp1E"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          height={310}
-          width={640}
-        ></iframe>
-      </div>
-
-      <div className="container w-max">
-        <h2 className="pt-0 font-semibold mb-2">
-          Introduction to Filed Simplified
-        </h2>
-
-        <div className="container mx-auto flex">
-          <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-          <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-
-          <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-
-          <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-
-          <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-           <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-           <iframe
-            src="https://www.youtube.com/embed/r9jwGansp1E"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            className="mx-8"
-            width={150}
-            height={100}
-          ></iframe>
-          
-        </div>
-        <div className="container flex mt-1">
-        <h3 className="mx-8 w-40">Why field simplified</h3>
-        <h3 className="mx-8 w-40">About Internship</h3>
-        <h3 className="mx-8 w-40 ">Other Programs</h3>
-        <h3 className="mx-8 ">About Supervision</h3>
-        <h3 className="mx-8 w-40">Field Covered</h3>
-        <h3 className="mx-8 w-40">Need help</h3>
-        <h3 className="mx-8 ">Demo</h3>
-        
-        </div>
-      </div>
-
+     
+      <LandWatch videos={currentVideo} />
       
+   
 
-      <Bottom />
     </>
   );
 };
