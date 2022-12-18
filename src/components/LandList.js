@@ -13,7 +13,7 @@ const LandList = ({videolist}) => {
    
   
 
-    console.log("The video to iterate",vis)
+    // console.log("The video to iterate",vis)
  
 
   return (

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   let { authTokens, logoutUser } = useContext(AuthContext);
@@ -15,7 +15,7 @@ const Register = () => {
   const [password,setPassword] = useState('')
   const [role,setRole] = useState('')
 
-  const notify = () => toast("Wow so easy!");
+  // const notify = () => toast("Wow so easy!");
   
   useEffect(()=> {
     register()
