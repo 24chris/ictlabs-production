@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 // import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContext = createContext()
