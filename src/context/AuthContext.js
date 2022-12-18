@@ -41,10 +41,10 @@ export const AuthProvider = ({children}) => {
             navigate('/user-registration')
             
         }else{
-            // alert('Something went wrong!')
-            toast.error("These credentials do not exist",{
-                position: toast.POSITION.TOP_LEFT
-              })
+            alert('Something went wrong!')
+            // toast.error("These credentials do not exist",{
+            //     position: toast.POSITION.TOP_LEFT
+            //   })
         }
     }
 
