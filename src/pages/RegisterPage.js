@@ -25,7 +25,7 @@ const Register = () => {
   let register = async e=> {
     e.preventDefault()
     const newuser = {email,username,password,role}
-    let response = await fetch('http://127.0.0.1:8000/api/register/', {
+    let response = await fetch('http://http://54.225.179.21/api/register/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
