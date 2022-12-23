@@ -109,7 +109,7 @@ const RegForm = () => {
     const data = formData
 
     
-    let response = await fetch('http://127.0.0.1:8000/api/v2/create-students/', {
+    let response = await fetch('https://fieldtest.owinoonline.com/api/v2/create-students/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
