@@ -22,7 +22,7 @@ export const AuthProvider = ({children}) => {
 
     let loginUser = async (e )=> {
         e.preventDefault()
-        let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/token/`, {
+        let response = await fetch('https://fieldtest.owinoonline.com/api/token/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -59,7 +59,7 @@ export const AuthProvider = ({children}) => {
 
     let updateToken = async ()=> {
 
-        let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/token/refresh/`, {
+        let response = await fetch('https://fieldtest.owinoonline.com/api/token/refresh/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
