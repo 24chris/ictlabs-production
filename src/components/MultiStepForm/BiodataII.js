@@ -14,7 +14,7 @@ const Biodata = ({ formData, setFormData }) => {
    
    
   let getCategory = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/latest-cat/", {
+    let response = await fetch("https://fieldtest.owinoonline.com/api/v1/latest-cat/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
