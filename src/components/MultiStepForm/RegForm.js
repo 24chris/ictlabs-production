@@ -121,13 +121,13 @@ const RegForm = () => {
    
     if(response.status === 201){
       alert('Thanks for your submission!!')    
-      handleFlutterPayment({
-        callback: (response) => {
-           console.log(response);
-            closePaymentModal() // this will close the modal programmatically
-        },
-        onClose: () => {},
-      });
+      // handleFlutterPayment({
+      //   callback: (response) => {
+      //      console.log(response);
+      //       closePaymentModal() // this will close the modal programmatically
+      //   },
+      //   onClose: () => {},
+      // });
       // navigate(`/${course_slug}/${module_slug}/${lesson_slug}/`)
       navigate('/courses')
 
