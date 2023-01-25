@@ -62,25 +62,25 @@ const RegForm = () => {
 // },[])
 
 
-const config = {
-  public_key:'FLWPUBK-6c66fbf331a89f824d6d5b164088a8a6-X',
-  tx_ref: Date.now(),
-  amount: 10000,
-  currency: 'UGX',
-  payment_options: 'card,mobilemoneyuganda',
-  customer: {
-    email: 'test@gmail.com',
-    phonenumber: {mm_unber},
-    name: 'Peter',
-  },
-  customizations: {
-    title: 'Registration fee',
-    description: 'Payment for Registration',
-    logo: '#',
-  },
-};
+// const config = {
+//   public_key:'FLWPUBK-6c66fbf331a89f824d6d5b164088a8a6-X',
+//   tx_ref: Date.now(),
+//   amount: 10000,
+//   currency: 'UGX',
+//   payment_options: 'card,mobilemoneyuganda',
+//   customer: {
+//     email: 'test@gmail.com',
+//     phonenumber: {mm_unber},
+//     name: 'Peter',
+//   },
+//   customizations: {
+//     title: 'Registration fee',
+//     description: 'Payment for Registration',
+//     logo: '#',
+//   },
+// };
 
-const handleFlutterPayment = useFlutterwave(config);
+// const handleFlutterPayment = useFlutterwave(config);
 
   
 
