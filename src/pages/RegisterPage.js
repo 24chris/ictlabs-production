@@ -93,7 +93,7 @@ const Register = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-between my-0 w-full">
               <div className="flex flex-col w-full my-0">
-                <label className="text-sm font-semibold text-gray-600 ">Student</label>
+                <label className="text-sm font-semibold text-gray-600 ">Intern</label>
                 <input type="radio" 
                 value="STUDENT"
                 onChange={e => {setRole(e.target.value)}} 
@@ -103,7 +103,7 @@ const Register = () => {
                 className="border-b py-2 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50" />
               </div>
               <div className="flex flex-col w-full my-0">
-                <label className="text-sm font-semibold text-gray-600">Non-Student</label>
+                <label className="text-sm font-semibold text-gray-600">Others</label>
                 <input type="radio" 
                 value="NON-STUDENT"
                 name="NON-STUDENT"

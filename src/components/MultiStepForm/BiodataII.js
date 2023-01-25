@@ -81,7 +81,7 @@ const Biodata = ({ formData, setFormData }) => {
             </label>
             <select
               type="text"
-              placeholder="choose program of interest"
+              placeholder="Program of Interest"
               value={formData.coursefield}
               name="coursefield"
               required={true}

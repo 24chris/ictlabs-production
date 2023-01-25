@@ -16,7 +16,7 @@ const CourseDetails = ({ formData, setFormData }) => {
             </label>
             <input
               type="text"
-              placeholder="Specify Course"
+              placeholder="Specify Course at university"
               value={formData.specify_course}
               name="specify_course"
               required={true}

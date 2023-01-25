@@ -4,82 +4,67 @@ import { Link,useParams } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import WatchArea from "../components/study/WatchArea";
+import Intern from "../components/Intern";
+import Other from "../components/Other";
 
 
 
 
 const DashboardPage = () => {
 
-  let { authTokens, logoutUser } = useContext(AuthContext);
+  let { authTokens,user, logoutUser } = useContext(AuthContext);
   
   let [video,setVideo] = useState([])
-  // let [module, setModule] = useState([]);
+  let [module, setModule] = useState([]);
   let [lessons, setLesson] = useState([]);
 
 
   let {course_slug} = useParams()
   
-    
-
-
-  useEffect(() => {
-    getVideo();
-   
-  }, []);
-
-      
   
-  
-  let getVideo = async () => {
-    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + String(authTokens.access),
-      },
-    });
-    let data = await response.json();
-
-    if (response.status === 200) {
-      setVideo(data);
-    } else if (response.statusText === "Unauthorized") {
-      alert("Something wrong")
-    }
-  };
 
 
   return (
     <>
+     {user.role === 'STUDENT'?
+    (
+      <Intern/>
+    ):(
+      <Other/>
+    )}
 
-    <WatchArea video={video}/>
 
 
 
 
+    {/* <WatchArea video={video}/> */}
 
-    {/* <div className="container mx-auto flex">
+
+
+{/* 
+
+    <div className="container mx-auto flex">
         <div className="flex w-1/3 px-2">
           <div>
             <h2 className="px-10 mt-2 mb-2">Lessons to Complete</h2>
 
-             <ul className="px-10"> */}
-              
-                
 
-                {/* {video.map((vidq) => (
+            {video.length>0 &&(
+             <ul className="px-10">
+        
+                {video.map((vidq) => (
                   <Disclosure>
                     {({ open }) => (
                       <>
                         <Disclosure.Button className="flex w-full justify-between rounded-lg bg-purple-100 px-4 py-2 text-left text-sm font-medium text-purple-900 hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75">
                           <span key={vidq.id}>{vidq.name}</span>
-
                           <ChevronUpIcon
                             className={`${
                               open ? "rotate-180 transform" : ""
                             } h-5 w-5 text-purple-500`}
                           />
                         </Disclosure.Button>
-                             {video.le_lesson.map((lesson) => (
+                             {video.course_module.map((lesson) => (
                           <>
                             <Disclosure.Panel
                               key={lesson.id}
@@ -98,10 +83,8 @@ const DashboardPage = () => {
                     )}
                   </Disclosure>
                    ))}
-               */}
-             
-            {/* </ul> 
-            
+            </ul> 
+            )}
           </div>
         </div>
 
@@ -113,11 +96,9 @@ const DashboardPage = () => {
             width={900}
             height={500}
           ></iframe>
-        </div> */}
-         {/* <div>{video.description}</div>  */}
-      {/* </div> */}
-
-      
+        </div>
+         <div>{video.description}</div>  
+       </div>   */}
     </>
     
   );

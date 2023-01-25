@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, useNavigate,useParams } from "react-router-dom";
+import SideBar from "../components/SideBar";
 
 const CoursePage = () => {
   let { authTokens, logoutUser } = useContext(AuthContext);
@@ -35,7 +36,7 @@ const CoursePage = () => {
 
   return (
     <>
-    <div className="bg-white">
+    {/* <div className="bg-white">
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {course.map((cours) => (
@@ -77,8 +78,11 @@ const CoursePage = () => {
       </div>
 
       <h1>Courses Page</h1>
-
       
+
+ */}
+
+      <SideBar/>
 
 
     </>
