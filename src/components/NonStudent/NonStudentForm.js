@@ -1,12 +1,11 @@
 import React, { useState,useContext,useEffect, useRef } from "react";
 import AuthContext from "../../context/AuthContext";
 import { useNavigate,useParams } from "react-router-dom";
-import { useForm } from "react-hook-form";
 
 const NonStudentForm = () => {
   let { authTokens,user, logoutUser } = useContext(AuthContext);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  
   
   const navigate = useNavigate();
 
