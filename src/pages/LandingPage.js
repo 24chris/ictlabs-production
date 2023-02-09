@@ -38,7 +38,7 @@ const LandingPage = () => {
 
   let text = async () => {
     // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/home-page/`, {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/home-page/", {
+    let response = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const LandingPage = () => {
 
   const fetchVideos = async () => {
     // let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/intro-videos/`,{
-    let res = await fetch("http://127.0.0.1:8000/api/v1/intro-videos/", {
+    let res = await fetch("https://fieldtest.owinoonline.com/api/v1/intro-videos/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
