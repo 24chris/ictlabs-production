@@ -14,13 +14,21 @@ import BridgePage from "./pages/BridgePage";
 import CoursePage from "./pages/CoursePage"
 import TestPage from "./pages/TestPage"
 import DemoLanding from "./pages/DemoLandingPage"
+import Roplit from "./pages/Roplit";
 import LandWatch from "./components/LandWatch";
 import DashboardPage from "./pages/DashboardPage"
 import ModulePage from "./pages/ModulePage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import React, { useEffect } from 'react';
 
 function App() {
+  useEffect(() =>{
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = () => {
+      window.history.pushState(null, null, window.location.href);
+    };
+  },[]);
   return (
     <div className="App">
       <Router>
@@ -41,6 +49,7 @@ function App() {
               <Route element={<CoursePage />} path="/courses" exact />
               <Route element={<DashboardPage />} path="/:course_slug/" exact />
               <Route element={<ModulePage />} path="/:course_slug/:module_slug" exact />
+              <Route element={<Roplit />} path="/roplit" exact />
             </Route>
           </Routes>
         </AuthProvider>

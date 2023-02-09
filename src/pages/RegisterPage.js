@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify'
-// import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   let { authTokens, logoutUser } = useContext(AuthContext);
@@ -15,7 +15,7 @@ const Register = () => {
   const [password,setPassword] = useState('')
   const [role,setRole] = useState('')
 
-  // const notify = () => toast("Wow so easy!");
+  const notify = () => toast("Wow so easy!");
   
   useEffect(()=> {
     register()
@@ -25,7 +25,7 @@ const Register = () => {
   let register = async e=> {
     e.preventDefault()
     const newuser = {email,username,password,role}
-    let response = await fetch('https://fieldtest.owinoonline.com/api/register/', {
+    let response = await fetch('http://127.0.0.1:8000/api/register/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',
@@ -42,7 +42,7 @@ const Register = () => {
        navigate('/user')
         
     }else{
-        alert('Something went wrong')
+        notify()
         
     }
 }
@@ -51,11 +51,11 @@ const Register = () => {
     <div className="fex flex-row w-full">
       <form onSubmit={register}>
         
-        <section className="flex flex-col mt-6">
+        <section className="flex flex-col mt-2">
           <div className="login-box w-full md:mx-auto relative z-100">
             {/* <h1 className="max-w-xl mx-auto pl-4 font-bold text-xl">Field Simplified</h1> */}
             <div className="box shadow-2xl max-w-xl mx-auto rounded-md p-14 z-100">
-              <h2 className="text-2xl font-bold mb-8 text-gray-600">
+              <h2 className="text-2xl font-bold mb-2 text-gray-600">
                 User Registration
               </h2>
               {/* <input name="csrfToken" type="hidden" defaultValue={csrfToken} /> */}
@@ -69,7 +69,7 @@ const Register = () => {
                 />
               </div>
 
-              <div className="mb-8">
+              <div className="mb-6">
                 <p className="text-md text-gray-500 mb-2">Username</p>
                 <input
                   type="text"
@@ -78,7 +78,7 @@ const Register = () => {
                   value={username} onChange={e => setUsername(e.target.value)}
                 />
               </div>
-              <div className="mb-8">
+              <div className="mb-6">
                 <div className="flex flex-col sm:flex-row sm:justify-between">
                   <p className="text-md text-gray-500 mb-2">Password</p>
                 </div>
@@ -91,19 +91,34 @@ const Register = () => {
                
               </div>
 
+              {/* <div className="mb-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between">
+                  <p className="text-md text-gray-500 mb-2">Confirm Password</p>
+                </div>
+                <input
+                  type="password"
+                  className="border w-full rounded-md border-gray-300 py-2"
+                  name="password"
+                  value={password} onChange={e => setPassword(e.target.value)}
+                />
+               
+              </div> */}
+
               <div className="flex flex-col sm:flex-row items-center justify-between my-0 w-full">
               <div className="flex flex-col w-full my-0">
-                <label className="text-sm font-semibold text-gray-600 ">Intern</label>
+                <label className="text-sm font-semibold text-gray-600 ">Intern
                 <input type="radio" 
                 value="STUDENT"
                 onChange={e => {setRole(e.target.value)}} 
                 checked={role==="STUDENT"}
                 name="STUDENT"
                 placeholder="" 
-                className="border-b py-2 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50" />
+                className="border-b mx-4 py-2 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50" />
+                </label>
+                
               </div>
               <div className="flex flex-col w-full my-0">
-                <label className="text-sm font-semibold text-gray-600">Others</label>
+                <label className="text-sm font-semibold text-gray-600">Others
                 <input type="radio" 
                 value="NON-STUDENT"
                 name="NON-STUDENT"
@@ -111,29 +126,23 @@ const Register = () => {
                 onChange={e => {setRole(e.target.value)}} 
                 
                 placeholder="" 
-                className="border-b py-2 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50" />
+                className="border-b mx-4 py-2 bg-white dark:bg-gray-700 focus:outline-none focus:ring-2 rounded-sm dark:placeholder-gray-500 text-gray-700 dark:text-gray-50" />
+                
+                </label>
+                
               </div>
             </div>
-
+              <div className="py-3">
               <input
                 className="w-full bg-red-500 py-2 rounded-md text-gray-50"
-                // onClick={() => signIn()}
                 type="submit"
                 value="Register"
               />
-
-
-              {/* </input> */}
-              {/* <button
-                className="w-full bg-red-500 py-2 rounded-md text-gray-50"
-                onClick={() => signIn("credentials")}
-              >
-                Login
-              </button> */}
+              </div>
               <div className="max-w-xl mx-auto">
                 <p className="text-sm mt-8 ml-8">
                   Have an account already ?{" "}
-                  <Link to="/login" className="text-red-500">
+                  <Link to="/user" className="text-red-500">
                     Login
                   </Link>
                 </p>

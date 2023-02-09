@@ -1,18 +1,57 @@
-import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useState,useEffect } from "react";
+//import { useState,useEffect } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  Fragment,
+  useRef,
+} from "react";
+import AuthContext from "../context/AuthContext";
+import { Link, useParams } from "react-router-dom";
 
 
 const SideBar = () => {
+  let { authTokens, user, logoutUser } = useContext(AuthContext);
 
+  const [video, setVideo] = useState([]);
+  
+
+  let { course_slug } = useParams();
+
+
+  useEffect(() => {
+    getVideo();
+  }, []);
+
+  let getVideo = async () => {
+    // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
+    let response = await fetch(`http://127.0.0.1:8000/api/v1/${course_slug}/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    });
+    let data = await response.json();
+
+    if (response.status === 200) {
+      setVideo(data);
+    } else if (response.statusText === "Unauthorized") {
+      alert("Something wrong");
+    }
+  };
+
+ 
+  console.log("Modules", video.course_module);
+  
   
   
   return (
     <>
-     <div className="flex flex-col justify-between h-screen bg-white border-r">
+     <div className="fixed left-0 w-64 justify-between h-screen bg-white border-r">
   <div className="px-4 py-6">
-    <span className="block w-32 h-10 bg-gray-200 rounded-lg"></span>
-
+    
     <nav aria-label="Main Nav" className="flex flex-col mt-6 space-y-1">
       <a
         href="#"
@@ -254,54 +293,22 @@ const SideBar = () => {
 
             <span className="ml-3 text-sm font-medium"> Security </span>
           </a>
-
-          <form action="/logout">
-            <button
-              type="submit"
-              className="flex items-center w-full px-4 py-2 text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5 opacity-75"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-
-              <span className="ml-3 text-sm font-medium"> Logout </span>
-            </button>
-          </form>
         </nav>
       </details>
-    </nav>
+
+      <div>
+      {video.length > 0 && (
+		<ul>
+      {video.map((crsmod) => (
+        <>
+        <div key={crsmod.id}>{crsmod.name}</div>
+        <h2>{crsmod.description}</h2>
+        </>
+      ))}
+	  </ul>
+	)}
   </div>
-
-  <div className="sticky inset-x-0 bottom-0 border-t border-gray-100">
-    <a
-      href="#"
-      className="flex items-center p-4 bg-white shrink-0 hover:bg-gray-50"
-    >
-      <img
-        alt="Man"
-        src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        className="object-cover w-10 h-10 rounded-full"
-      />
-
-      <div className="ml-1.5">
-        <p className="text-xs">
-          <strong className="block font-medium">Eric Frusciante</strong>
-
-          <span> eric@frusciante.com </span>
-        </p>
-      </div>
-    </a>
+    </nav>
   </div>
 </div>
 
