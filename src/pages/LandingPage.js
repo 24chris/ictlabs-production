@@ -3,6 +3,7 @@ import AuthContext from "../context/AuthContext";
 import ReactPlayer from "react-player/youtube";
 import Bottom from "../components/Bottom";
 import LandWatch from "../components/LandWatch";
+import InformationList from "../components/InformationLIst";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -55,7 +56,7 @@ const LandingPage = () => {
 
   const fetchVideos = async () => {
     // let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/intro-videos/`,{
-    let res = await fetch("https://fieldtest.owinoonline.com/api/v1/intro-videos/", {
+    let res = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -249,6 +250,7 @@ const LandingPage = () => {
     </div>
     <div className="w-full py-5">
       <Bottom/>
+      {/* <InformationList/> */}
     </div>
   </div>
 </div>

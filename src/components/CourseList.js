@@ -32,7 +32,7 @@ import React, {
   
     let courseChosen = async () => {
         // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
-          let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/latest-cat/`,{
+          let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/home-page/`,{
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -119,13 +119,16 @@ import React, {
           <p className="text-gray-700 text-base mb-4">
             {cours.description}
           </p>
+          <p className="text-gray-700 text-base mb-4">
+            {cours.price}
+          </p>
           <Link to={cours.get_absolute_url}>
           <button
             type="button"
             className=" inline-block px-6 py-2.5 bg-red-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-500 hover:shadow-lg focus:bg-red-500 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-500 active:shadow-lg transition duration-150 ease-in-out"
             // onClick={() => {getVideo()}}
           >
-            View Course Content
+            Pay For Course
           </button>
 
           

@@ -17,11 +17,7 @@ const Bottom = () => {
     let response = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/");
     let data = await response.json();
 
-    console.log("Common info", data);
-
-    console.log("Accessing array items", data.length);
-
-    if (response.status === 200) {
+      if (response.status === 200) {
       setInfo(data);
       setDisplayedItems(data.slice(0, 5));
       setMaxIndex(Math.ceil(data.length / 5));
@@ -29,6 +25,9 @@ const Bottom = () => {
       console.log("Nothing fetched");
     }
   };
+
+
+  console.log("Information Items",info)
 
   function closeModal() {
     setIsOpen(false);
@@ -54,7 +53,26 @@ const Bottom = () => {
 
   return (
     <>
-      <div className="flex overflow-x-auto">
+      {/* {info.length > 0 && ( */}
+        {/* <> */}
+          {/* {info.map((inf)=>{
+            <div key={inf.id}>
+              {inf.information_name} 
+              <div className="text-lg font-medium text-black">
+              {inf.information_name} 
+              </div>
+              
+            </div>
+          })} */}
+        {/* </>       */}
+      {/* )} */}
+
+    
+      
+
+
+
+       <div className="flex overflow-x-auto">
         <button
           className="flex w-10 h-10 ml-1 justify-center items-center rounded-full border border-gray-200 bg-white text-black hover:border-gray-300bg-blue-500 text-white py-2 px-4 rounded-l"
           onClick={handlePrevious}
@@ -75,12 +93,12 @@ const Bottom = () => {
               <div
                 key={inf.id}
                 className=" group
-            inline-block pb-4 text-white  rounded-2xl 
+            inline-block pb-4 text-black  rounded-2xl 
             transition
             
             "
               >
-                <div className="bg-gray-200 py-2 px-4 mr-2 rounded-lg text-left">
+                <div className="bg-gray-200 py-5 px-4 mr-2 rounded-lg text-left">
                   <button
                     className="text-lg font-medium text-black"
                     onClick={openModal}
@@ -106,7 +124,6 @@ const Bottom = () => {
                           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
                         </Transition.Child>
 
-                        {/* This element is to trick the browser into centering the modal contents. */}
                         <span
                           className="inline-block h-screen align-middle"
                           aria-hidden="true"
@@ -168,7 +185,10 @@ const Bottom = () => {
             <path d="M17.525 36.465l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L205.947 256 10.454 451.494c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l211.051-211.05c4.686-4.686 4.686-12.284 0-16.971L34.495 36.465c-4.686-4.687-12.284-4.687-16.97 0z"></path>
           </svg>
         </button>
-      </div>
+      </div> 
+
+
+
     </>
   );
 };

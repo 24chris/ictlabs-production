@@ -40,7 +40,7 @@ const BridgePage = () => {
   
   let checkStatus = async () => {
     // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
-      let response = await fetch(`https://fieldtest.owinoonline.com/api/v2/check-reg/`,{
+      let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/home-page/`,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -75,3 +75,49 @@ const BridgePage = () => {
 };
 
 export default BridgePage;
+
+
+
+// Prevent Back browser navigation
+// import React, { useEffect } from 'react';
+
+// const Example = () => {
+//   useEffect(() => {
+//     window.history.pushState(null, null, window.location.href);
+//     window.onpopstate = () => {
+//       window.history.pushState(null, null, window.location.href);
+//     };
+//   }, []);
+
+//   return (
+//     <div>
+//       <h1>Hello World!</h1>
+//       <p>Back navigation is disabled.</p>
+//     </div>
+//   );
+// };
+
+// export default Example;
+
+// Throughout the whole app
+// You can disable back navigation throughout your whole React app 
+// by using the window.history.pushState method in the useEffect hook in the root component. 
+// This will prevent back navigation throughout the entire app, regardless of which component is currently being displayed.
+// import React, { useEffect } from 'react';
+
+// const App = () => {
+//   useEffect(() => {
+//     window.history.pushState(null, null, window.location.href);
+//     window.onpopstate = () => {
+//       window.history.pushState(null, null, window.location.href);
+//     };
+//   }, []);
+
+//   return (
+//     <div>
+//       {/* Your app components */}
+//     </div>
+//   );
+// };
+
+// export default App;
