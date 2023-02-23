@@ -14,7 +14,6 @@ import BridgePage from "./pages/BridgePage";
 import CoursePage from "./pages/CoursePage"
 import TestPage from "./pages/TestPage"
 import DemoLanding from "./pages/DemoLandingPage"
-import Roplit from "./pages/Roplit";
 import LandWatch from "./components/LandWatch";
 import DashboardPage from "./pages/DashboardPage"
 import ModulePage from "./pages/ModulePage";
@@ -52,7 +51,6 @@ function App() {
               <Route element={<CoursePage />} path="/courses" exact />
               <Route element={<DashboardPage />} path="/:course_slug/" exact />
               <Route element={<ModulePage />} path="/:course_slug/:module_slug" exact />
-              <Route element={<Roplit />} path="/roplit" exact />
             </Route>
           </Routes>
         </AuthProvider>
