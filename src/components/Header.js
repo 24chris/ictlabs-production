@@ -16,8 +16,8 @@ const Header = () => {
             {user ? (
                 <> {user && <p className='font-sans text-2xl font-semibold p-2'> {user.username}</p>} <span className='font-sans text-2xl p-2'> | </span>
 
-                <p  className='font-sans  inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-500"
-            '  onClick={logoutUser}>Logout</p> 
+                <button  className='font-sans  inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-500"
+            '  onClick={logoutUser}>Logout</button> 
                 </>
             ): (
                 <>
@@ -26,8 +26,7 @@ const Header = () => {
                 <Link className='mr-5 hover:text-gray-900' to="/register"> Register</Link>
                 </>
             )}
-          
-             
+                
             </nav>
            </div>
         </div>
