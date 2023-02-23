@@ -1,8 +1,8 @@
 import { createContext, useState, useEffect } from 'react'
 import jwt_decode from "jwt-decode";
 import { useNavigate } from 'react-router-dom'
-// import { toast } from 'react-toastify'
-// import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 const AuthContext = createContext()
 
@@ -22,7 +22,7 @@ export const AuthProvider = ({children}) => {
 
     let loginUser = async (e )=> {
         e.preventDefault()
-        let response = await fetch('https://fieldtest.owinoonline.com/api/token/', {
+        let response = await fetch('http://127.0.0.1:8000/api/token/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -41,10 +41,10 @@ export const AuthProvider = ({children}) => {
             navigate('/user-registration')
             
         }else{
-            alert('Something went wrong!')
-            // toast.error("These credentials do not exist",{
-            //     position: toast.POSITION.TOP_LEFT
-            //   })
+            // alert('Something went wrong!')
+            toast.error("These credentials do not exist",{
+                position: toast.POSITION.TOP_LEFT
+              })
         }
     }
 
@@ -53,13 +53,13 @@ export const AuthProvider = ({children}) => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
-        navigate('/login')
+        navigate('/')
     }
 
 
     let updateToken = async ()=> {
 
-        let response = await fetch('https://fieldtest.owinoonline.com/api/token/refresh/', {
+        let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
