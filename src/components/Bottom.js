@@ -5,22 +5,22 @@ const Bottom = () => {
   let [isOpen, setIsOpen] = useState(false);
   let [info, setInfo] = useState([]);
 
-  const [displayedItems, setDisplayedItems] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [maxIndex, setMaxIndex] = useState(0);
+  // const [displayedItems, setDisplayedItems] = useState([]);
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const [maxIndex, setMaxIndex] = useState(0);
 
   useEffect(() => {
     getInfo();
   }, []);
 
   let getInfo = async () => {
-    let response = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/");
+    let response = await fetch("http://127.0.0.1:8000/api/v1/home-page/");
     let data = await response.json();
 
       if (response.status === 200) {
-      setInfo(data);
-      setDisplayedItems(data.slice(0, 5));
-      setMaxIndex(Math.ceil(data.length / 5));
+      setInfo(data.slice(0,10));
+      // setDisplayedItems(data.slice(0, 5));
+      // setMaxIndex(Math.ceil(data.length / 5));
     } else if (response.statusText === "Unauthorized") {
       console.log("Nothing fetched");
     }
@@ -37,19 +37,19 @@ const Bottom = () => {
     setIsOpen(true);
   }
 
-  function handleNext() {
-    if (currentIndex < maxIndex - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setDisplayedItems(info.slice(currentIndex * 5, (currentIndex + 1) * 5));
-    }
-  }
+  // function handleNext() {
+  //   if (currentIndex < maxIndex - 1) {
+  //     setCurrentIndex(currentIndex + 1);
+  //     setDisplayedItems(info.slice(currentIndex * 5, (currentIndex + 1) * 5));
+  //   }
+  // }
 
-  function handlePrevious() {
-    if (currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-      setDisplayedItems(info.slice(currentIndex * 5, (currentIndex + 1) * 5));
-    }
-  }
+  // function handlePrevious() {
+  //   if (currentIndex > 0) {
+  //     setCurrentIndex(currentIndex - 1);
+  //     setDisplayedItems(info.slice(currentIndex * 5, (currentIndex + 1) * 5));
+  //   }
+  // }
 
   return (
     <>
@@ -73,7 +73,7 @@ const Bottom = () => {
 
 
        <div className="flex overflow-x-auto">
-        <button
+        {/* <button
           className="flex w-10 h-10 ml-1 justify-center items-center rounded-full border border-gray-200 bg-white text-black hover:border-gray-300bg-blue-500 text-white py-2 px-4 rounded-l"
           onClick={handlePrevious}
           disabled={currentIndex === 0}
@@ -86,10 +86,10 @@ const Bottom = () => {
           >
             <path d="M17.525 36.465l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L205.947 256 10.454 451.494c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l211.051-211.05c4.686-4.686 4.686-12.284 0-16.971L34.495 36.465c-4.686-4.687-12.284-4.687-16.97 0z"></path>
           </svg>
-        </button>
+        </button> */}
         {info.length > 0 && (
           <ul>
-            {displayedItems.map((inf) => (
+            {info.map((inf) => (
               <div
                 key={inf.id}
                 className=" group
@@ -98,9 +98,9 @@ const Bottom = () => {
             
             "
               >
-                <div className="bg-gray-200 py-5 px-4 mr-2 rounded-lg text-left">
+                <div className="py-5 px-5 mr-6 rounded-lg text-left">
                   <button
-                    className="text-lg font-medium text-black"
+                    className="text-lg font-medium text-black underline"
                     onClick={openModal}
                   >
                     {inf.information_name}
@@ -171,7 +171,7 @@ const Bottom = () => {
             ))}
           </ul>
         )}
-        <button
+        {/* <button
           className="flex w-10 h-10 ml-1 justify-center items-center rounded-full border border-gray-200 bg-white text-black hover:border-gray-300"
           onClick={handleNext}
           disabled={currentIndex === maxIndex - 1}
@@ -184,7 +184,7 @@ const Bottom = () => {
           >
             <path d="M17.525 36.465l-7.071 7.07c-4.686 4.686-4.686 12.284 0 16.971L205.947 256 10.454 451.494c-4.686 4.686-4.686 12.284 0 16.971l7.071 7.07c4.686 4.686 12.284 4.686 16.97 0l211.051-211.05c4.686-4.686 4.686-12.284 0-16.971L34.495 36.465c-4.686-4.687-12.284-4.687-16.97 0z"></path>
           </svg>
-        </button>
+        </button> */}
       </div> 
 
 
