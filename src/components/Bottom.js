@@ -14,7 +14,7 @@ const Bottom = () => {
   }, []);
 
   let getInfo = async () => {
-    let response = await fetch("http://127.0.0.1:8000/api/v1/home-page/");
+    let response = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/");
     let data = await response.json();
 
       if (response.status === 200) {
