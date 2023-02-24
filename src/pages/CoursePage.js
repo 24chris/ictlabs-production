@@ -17,7 +17,8 @@ const CoursePage = () => {
   }, []); 
 
   let RegisteredCourse = async () => {
-    let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/latest-cat/`, {
+    // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/latest-cat/`, {
+      let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/${course_slug}/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
