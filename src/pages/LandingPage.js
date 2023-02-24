@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthContext";
 import ReactPlayer from "react-player/youtube";
 import Bottom from "../components/Bottom";
 import LandWatch from "../components/LandWatch";
-import InformationList from "../components/InformationLIst";
+
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
