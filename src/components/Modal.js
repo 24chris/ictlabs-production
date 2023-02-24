@@ -36,7 +36,7 @@ import React, {
     
     
     let checkStatus = async () => {
-      // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
+      
         let response = await fetch(`https://fieldtest.owinoonline.com/api/v2/check-reg/`,{
         method: "GET",
         headers: {
