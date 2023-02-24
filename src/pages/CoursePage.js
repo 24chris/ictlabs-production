@@ -10,7 +10,8 @@ const CoursePage = () => {
 
 
   const [course, setCourse] = useState([]);
-  
+
+    
 
   useEffect(() => {
     RegisteredCourse()
@@ -18,7 +19,7 @@ const CoursePage = () => {
 
   let RegisteredCourse = async () => {
     // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/latest-cat/`, {
-      let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/${course_slug}/`, {
+      let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/latest-cat/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
