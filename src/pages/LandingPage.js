@@ -39,7 +39,7 @@ const LandingPage = () => {
 
   let text = async () => {
     // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/home-page/`, {
-    let response = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/", {
+    let response = await fetch("https://labs-production-6dbb.up.railway.app/api/v1/home-page/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const LandingPage = () => {
 
   const fetchVideos = async () => {
     // let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/intro-videos/`,{
-    let res = await fetch("https://fieldtest.owinoonline.com/api/v1/home-page/", {
+    let res = await fetch("https://labs-production-6dbb.up.railway.app/api/v1/home-page/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
