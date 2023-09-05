@@ -224,8 +224,7 @@ const LandingPage = () => {
     </div>
     <div className="w-full ">
       {/* <p className="text-xl font-bold">Row 2</p> */}
-      <h1 className="flex flex-row justify-center text-xl font-bold p-2">Introduction to Field Simplified</h1> 
-      
+            
       <div className="container w-full mx-auto">
       {currentVideo.length > 0 && (
         <ul className="flex flex-row justify-center">
