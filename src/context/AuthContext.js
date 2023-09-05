@@ -59,7 +59,7 @@ export const AuthProvider = ({children}) => {
 
     let updateToken = async ()=> {
 
-        let response = await fetch('https://labs-production-6dbb.up.railway.app/token/refresh/', {
+        let response = await fetch('https://labs-production-6dbb.up.railway.app/api/token/refresh/', {
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
