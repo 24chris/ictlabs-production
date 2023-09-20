@@ -14,7 +14,7 @@ const Bottom = () => {
   }, []);
 
   let getInfo = async () => {
-    let response = await fetch("https://labs-production-6dbb.up.railway.app/v1/home-page/");
+    let response = await fetch("https://labs-production-6dbb.up.railway.app/api/v1/home-page/");
     let data = await response.json();
 
       if (response.status === 200) {
