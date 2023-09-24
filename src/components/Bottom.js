@@ -72,7 +72,7 @@ const Bottom = () => {
 
 
 
-       <div className="flex overflow-x-auto">
+       <div className="flex overflow-x-auto justify-center">
         {/* <button
           className="flex w-10 h-10 ml-1 justify-center items-center rounded-full border border-gray-200 bg-white text-black hover:border-gray-300bg-blue-500 text-white py-2 px-4 rounded-l"
           onClick={handlePrevious}
@@ -105,6 +105,7 @@ const Bottom = () => {
                   >
                     {inf.information_name}
                   </button>
+                  {isOpen &&(
                   <Transition appear show={isOpen} as={Fragment}>
                     <Dialog
                       as="div"
@@ -121,7 +122,7 @@ const Bottom = () => {
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
+                         <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
                         </Transition.Child>
 
                         <span
@@ -166,6 +167,7 @@ const Bottom = () => {
                       </div>
                     </Dialog>
                   </Transition>
+                     )}
                 </div>
               </div>
             ))}

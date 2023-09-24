@@ -109,7 +109,7 @@ const RegForm = () => {
     const data = formData
 
     
-    let response = await fetch('https://fieldtest.owinoonline.com/api/v2/create-students/', {
+    let response = await fetch('https://labs-production-6dbb.up.railway.app/api/v1/new/student/detail/create-students/', {
         method:'POST',
         headers:{
             'Content-Type':'application/json',

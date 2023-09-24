@@ -40,7 +40,7 @@ const BridgePage = () => {
   
   let checkStatus = async () => {
     // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
-      let response = await fetch(`https://fieldtest.owinoonline.com/api/v2/check-reg/`,{
+      let response = await fetch(`https://labs-production-6dbb.up.railway.app/api/v1/reg/new/register/check-reg/`,{
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -37,7 +37,7 @@ import React, {
     
     let checkStatus = async () => {
       
-        let response = await fetch(`https://fieldtest.owinoonline.com/api/v2/check-reg/`,{
+        let response = await fetch(`https://labs-production-6dbb.up.railway.app/api/v1/reg/new/register/check-reg/`,{
         method: "GET",
         headers: {
           "Content-Type": "application/json",
