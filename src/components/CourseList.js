@@ -32,7 +32,7 @@ import React, {
   
     let courseChosen = async () => {
         // let response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/${course_slug}/`, {
-          let response = await fetch(`https://fieldtest.owinoonline.com/api/v1/latest-cat/`,{
+          let response = await fetch(`https://labs-production-6dbb.up.railway.app/api/v1/latest-cat/`,{
           method: "GET",
           headers: {
             "Content-Type": "application/json",
